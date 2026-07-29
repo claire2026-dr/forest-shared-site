@@ -45,6 +45,40 @@ body {
 button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 a { color: inherit; text-decoration: none; }
+.site-watermark {
+  position: fixed;
+  right: clamp(12px, 4vw, 42px);
+  bottom: clamp(10px, 3vw, 32px);
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  color: var(--ink);
+  opacity: 0.075;
+  font-family: "Huiwen Mincho Local", "汇文明朝体", "Huiwen Mincho", "Source Han Serif SC", serif;
+  font-size: clamp(92px, 19vw, 210px);
+  line-height: 1;
+  font-weight: 900;
+  transform: rotate(-7deg);
+}
+body[data-theme="dark"] .site-watermark { opacity: 0.055; }
+
+.hero-tip {
+  width: fit-content;
+  max-width: 620px;
+  margin: 0 0 14px;
+  border: 1px solid rgba(47, 107, 79, 0.16);
+  border-radius: 8px;
+  padding: 9px 12px;
+  background: rgba(255, 255, 255, 0.36);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  backdrop-filter: blur(12px);
+}
+body[data-theme="dark"] .hero-tip {
+  background: rgba(13, 22, 19, 0.46);
+  border-color: rgba(192, 220, 205, 0.12);
+}
 
 .ambient-control {
   position: fixed;
@@ -309,6 +343,8 @@ body[data-theme="dark"] .card { background: rgba(255, 255, 255, 0.07); }
   .hero h1 { font-size: 37px; }
   .hero p { font-size: 15px; }
   .subtitle { font-size: 22px; margin-bottom: 12px; }
+  .hero-tip { width: 100%; max-width: none; font-size: 12px; padding: 9px 10px; }
+  .site-watermark { right: 8px; bottom: 8px; opacity: 0.055; }
   .grid { margin-top: -42px; padding: 0 12px 32px; }
   .metrics, .book-grid, .deep-stage { grid-template-columns: 1fr; }
   .book { grid-template-columns: 108px minmax(0, 1fr); }

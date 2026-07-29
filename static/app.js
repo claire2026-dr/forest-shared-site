@@ -300,7 +300,7 @@ const healingQuotes = [
   ["马特·海格《活下去的理由》", "看树。\n靠近树。\n种树。\n因为树很棒。"],
   ["伍尔夫《海浪》", "生命就像树一样会生长年轮。\n就像一棵树，\n叶子总会落地。"],
   ["惠特曼《我们俩，被愚弄了那么久》", "我们成为大树、树干、树叶、树根、树皮。\n我们深埋在地下，\n我们是岩石，\n我们是橡树，\n在旷野里并排生长。"],
-  ["林间精神世界", "人会在绿意中长出生命力。"]
+  ["云水椿生", "人会在绿意中长出生命力。"]
 ];
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
