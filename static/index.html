@@ -32,6 +32,7 @@
           <a href="#types">16型书单</a>
           <a href="#public">匿名共鸣</a>
           <a href="#healing">治愈</a>
+          <a href="#suggestions">建议</a>
         </div>
         <button id="themeToggle" class="theme-toggle" type="button">夜间</button>
       </nav>
@@ -72,7 +73,7 @@
             <button id="draw" class="btn" type="button">抽取</button>
             <button id="random" class="btn" type="button">随机</button>
           </div>
-          <p class="mini-tip">小提示：标题仍叫 100 问，但其实可以填写 1-197。开发者只是为了凑一个完美数字才这样起名。</p>
+          <p class="mini-tip">小提示：标题虽然是 100 问但其实可以抽到 197 哦！开发者只是为了凑一个完美数字才这样起名，建议先抽前面的，后面我有点东拼西凑了 dbq！</p>
           <div class="stage"><span id="qBadge">Q --</span><p id="qText">输入一个数字，或随机抽一个问题。</p></div>
           <form class="answer" data-kind="question">
             <textarea id="qAnswer" rows="5" placeholder="写下你的回答。发布后会匿名进入右侧卡片墙。"></textarea>
@@ -109,9 +110,22 @@
           </div>
         </article>
 
+
+        <article id="suggestions" class="module suggestion-module">
+          <div class="head">
+            <div><span class="kicker">04</span><h2>提建议</h2></div>
+            <span class="pill">留言区</span>
+          </div>
+          <p class="suggestion-intro">这是我第一次尝试做网页，肯定有超级多不足！大家可以多多提建议，我都会看的，写在这里吧~</p>
+          <form class="answer suggestion-form" data-kind="suggestion">
+            <textarea id="sAnswer" rows="4" placeholder="写下你想提的建议，也可以告诉我哪里好玩、哪里不好用。"></textarea>
+            <button class="primary" type="submit">发布建议</button>
+          </form>
+          <div id="suggestionList" class="suggestion-list"></div>
+        </article>
         <article id="healing" class="module healing-lines">
           <div class="head">
-            <div><span class="kicker">04</span><h2>治愈句子</h2></div>
+            <div><span class="kicker">05</span><h2>治愈句子</h2></div>
             <button id="quoteDraw" class="btn" type="button">换一句</button>
           </div>
           <div class="quote-stage">
@@ -134,7 +148,7 @@
 
         <article id="types" class="module">
           <div class="head">
-            <div><span class="kicker">05</span><h2>16型人格测试与书单</h2></div>
+            <div><span class="kicker">06</span><h2>16型人格测试与书单</h2></div>
             <a class="official" href="https://www.mbtionline.com/en-US/Products/For-you" target="_blank" rel="noreferrer">官方测试入口</a>
           </div>
           <p class="note">MBTI 和 Myers-Briggs Type Indicator 是 The Myers-Briggs Company 的注册商标。本页不复制测试题，仅提供官方入口与独立阅读建议。线上书封面来自 Open Library Covers API，加载失败时自动显示本地设计封面。</p>

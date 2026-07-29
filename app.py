@@ -51,10 +51,30 @@ def load_answers() -> list[dict[str, Any]]:
     if not isinstance(answers, list):
         answers = []
     if isinstance(seed, list) and seed:
-        existing_ids = {str(item.get("id", "")) for item in answers if isinstance(item, dict)}
+        seed_by_id = {
+            str(item.get("id", "")): item
+            for item in seed
+            if isinstance(item, dict) and item.get("id")
+        }
+        changed = False
+        synced_answers = []
+        for item in answers:
+            if not isinstance(item, dict):
+                changed = True
+                continue
+            seed_item = seed_by_id.get(str(item.get("id", "")))
+            if seed_item is not None:
+                synced_answers.append(seed_item)
+                changed = changed or item != seed_item
+            else:
+                synced_answers.append(item)
+        existing_ids = {str(item.get("id", "")) for item in synced_answers if isinstance(item, dict)}
         missing_seed = [item for item in seed if isinstance(item, dict) and str(item.get("id", "")) not in existing_ids]
         if missing_seed:
-            answers = missing_seed + answers
+            synced_answers = missing_seed + synced_answers
+            changed = True
+        answers = synced_answers
+        if changed or not ANSWERS_PATH.exists():
             write_json(ANSWERS_PATH, answers)
     elif not ANSWERS_PATH.exists():
         write_json(ANSWERS_PATH, answers)

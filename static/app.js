@@ -331,6 +331,7 @@ async function loadAnswers() {
   $("#allCount").textContent = data.stats?.answers || answers.length;
   renderFeed();
   renderMotionWall();
+  renderSuggestions();
 }
 
 function drawQuestion(number) {
@@ -435,6 +436,21 @@ function renderHealingQuote() {
   source.textContent = item[0];
   text.textContent = item[1];
 }
+function renderSuggestions() {
+  const target = $("#suggestionList");
+  if (!target) return;
+  const items = answers.filter((item) => item.kind === "suggestion").slice(0, 30);
+  if (!items.length) {
+    target.innerHTML = '<div class="empty">这里暂时还没有建议。你可以写下第一条，我会认真看的。</div>';
+    return;
+  }
+  target.innerHTML = items.map((item) => `
+    <article class="suggestion-item">
+      <header><strong>${escapeHtml(item.alias)}</strong><span>${formatDate(item.created_at)}</span></header>
+      <p>${escapeHtml(item.content)}</p>
+    </article>
+  `).join("");
+}
 function renderFeed() {
   let items = feed === "mine" ? answers.filter((item) => item.user_id === uid) : answers;
   if (feed === "question" || feed === "deep") items = answers.filter((item) => item.kind === feed);
@@ -451,7 +467,9 @@ function renderFeed() {
 }
 
 async function addAnswer(kind, content) {
-  const prompt = kind === "deep" ? currentDeep : currentQuestion;
+  let prompt = currentQuestion;
+  if (kind === "deep") prompt = currentDeep;
+  if (kind === "suggestion") prompt = { id: "SUGGEST", text: "网页建议留言" };
   if (!prompt) {
     alert("请先抽取今日深度问题");
     return;
@@ -761,8 +779,9 @@ function bindEvents() {
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const kind = form.dataset.kind;
-      const textarea = kind === "deep" ? $("#dAnswer") : $("#qAnswer");
+      const textarea = form.querySelector("textarea");
       const button = form.querySelector("button");
+      const originalText = button.textContent;
       const content = textarea.value.trim();
       if (!content) return;
       button.disabled = true;
@@ -777,7 +796,7 @@ function bindEvents() {
       }
       setTimeout(() => {
         button.disabled = false;
-        button.textContent = kind === "deep" ? "发布今日思考" : "发布匿名回答";
+        button.textContent = originalText;
       }, 900);
     });
   });

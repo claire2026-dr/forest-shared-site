@@ -305,6 +305,43 @@ body[data-theme="dark"] .book { background: rgba(255, 255, 255, 0.06); }
 .book dl div { display: grid; gap: 4px; }
 .book dt { color: var(--leaf); font-size: 11px; font-weight: 900; }
 .book dd { margin: 0; color: var(--text); font-size: 12px; line-height: 1.62; }
+
+.suggestion-intro {
+  margin: 0;
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.9;
+}
+.suggestion-form textarea { min-height: 112px; }
+.suggestion-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+  max-height: 360px;
+  overflow: auto;
+  padding-right: 2px;
+}
+.suggestion-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 13px 14px;
+  background: rgba(255, 255, 255, 0.46);
+}
+body[data-theme="dark"] .suggestion-item { background: rgba(255, 255, 255, 0.06); }
+.suggestion-item header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.suggestion-item header strong { color: var(--ink); }
+.suggestion-item p {
+  margin: 8px 0 0;
+  color: var(--text);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
 .side { position: sticky; top: 18px; height: calc(100vh - 36px); display: grid; grid-template-rows: auto auto auto minmax(0, 1fr); gap: 12px; padding: 18px; }
 .tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
 .tab { min-height: 36px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255, 255, 255, 0.36); color: var(--muted); font-weight: 900; }
