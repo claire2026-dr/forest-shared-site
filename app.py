@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import json
 import mimetypes
@@ -15,9 +15,13 @@ from urllib.parse import parse_qs, unquote, urlparse
 
 BASE_DIR = Path(__file__).resolve().parent
 STATIC_DIR = BASE_DIR / "static"
-DATA_DIR = Path(os.environ.get("DATA_DIR", str(BASE_DIR / "data"))).resolve()
+DATA_DIR = Path(
+    os.environ.get("DATA_DIR")
+    or os.environ.get("RAILWAY_VOLUME_MOUNT_PATH")
+    or str(BASE_DIR / "data")
+).resolve()
 ANSWERS_PATH = DATA_DIR / "answers.json"
-SEED_PATH = DATA_DIR / "seed_answers.json"
+SEED_PATH = BASE_DIR / "data" / "seed_answers.json"
 LOCK = Lock()
 mimetypes.add_type("audio/mp4", ".m4a")
 
@@ -43,15 +47,18 @@ def write_json(path: Path, data: Any) -> None:
 
 def load_answers() -> list[dict[str, Any]]:
     answers = read_json(ANSWERS_PATH, None)
-    if isinstance(answers, list):
-        return answers
     seed = read_json(SEED_PATH, [])
-    if isinstance(seed, list):
-        write_json(ANSWERS_PATH, seed)
-        return seed
-    write_json(ANSWERS_PATH, [])
-    return []
-
+    if not isinstance(answers, list):
+        answers = []
+    if isinstance(seed, list) and seed:
+        existing_ids = {str(item.get("id", "")) for item in answers if isinstance(item, dict)}
+        missing_seed = [item for item in seed if isinstance(item, dict) and str(item.get("id", "")) not in existing_ids]
+        if missing_seed:
+            answers = missing_seed + answers
+            write_json(ANSWERS_PATH, answers)
+    elif not ANSWERS_PATH.exists():
+        write_json(ANSWERS_PATH, answers)
+    return answers
 
 def public_answer(answer: dict[str, Any]) -> dict[str, Any]:
     return {
@@ -233,8 +240,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
