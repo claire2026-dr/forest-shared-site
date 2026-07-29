@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
@@ -14,8 +14,10 @@
       <option value="forest">森林</option>
       <option value="water">流水</option>
       <option value="cicada">蝉鸣</option>
+      <option value="rain">下雨</option>
+      <option value="chime">风铃</option>
+      <option value="ancient">古朴雅乐</option>
       <option value="country">旷野吉他与笛</option>
-      
     </select>
   </div>
 
@@ -64,10 +66,11 @@
             <span class="pill">你的题库</span>
           </div>
           <div class="controls">
-            <label><span>说一个数字</span><input id="num" type="number" min="1" max="100" placeholder="1-100" /></label>
+            <label><span>说一个数字</span><input id="num" type="number" min="1" max="197" placeholder="1-197" /></label>
             <button id="draw" class="btn" type="button">抽取</button>
             <button id="random" class="btn" type="button">随机</button>
           </div>
+          <p class="mini-tip">小提示：标题仍叫 100 问，但其实可以填写 1-197。开发者只是为了凑一个完美数字才这样起名。</p>
           <div class="stage"><span id="qBadge">Q --</span><p id="qText">输入一个数字，或随机抽一个问题。</p></div>
           <form class="answer" data-kind="question">
             <textarea id="qAnswer" rows="5" placeholder="写下你的回答。发布后会匿名进入右侧卡片墙。"></textarea>
@@ -153,6 +156,7 @@
           <button id="refreshBtn" class="btn" type="button">刷新回答</button>
           <button id="topBtn" class="btn" type="button">回到顶部</button>
         </div>
+        <p class="wall-tip">小提示：动态回答墙第一次可能会短暂空白。下拉到底部，点「刷新回答」就可以重新拉出大家的匿名回答啦。</p>
         <div id="feed" class="feed"></div>
       </aside>
     </main>
@@ -160,11 +164,3 @@
   <script src="/app.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-

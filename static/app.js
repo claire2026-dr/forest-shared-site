@@ -1,4 +1,4 @@
-﻿const questions = `
+const questions = `
 1 你心目中最荒谬的社会规则是什么？
 2 如果能消除人类的一种情绪，你会选择什么呢？
 3 如果只可以和小动物说一句对话，你会选择和谁说？说什么？
@@ -48,8 +48,8 @@
 47 在之前的某段友谊中，你有没有说过或者做过什么后悔的事情？
 48 在友情中，你的哪些原则是不会妥协的？
 49 你如何消化朋友或家人带来的无心伤害？
-50 你对我的第一印象是什么？
-51 请用三个词描述你心目中的我
+50 你对你最好的朋友的第一印象是什么？
+51 请用三个词描述你认为的“满分朋友/伴侣”
 52 你觉得人们经常会误解你的哪个点？
 53 目前最困扰你的问题是什么？
 54 你如何平衡生活中的感性与理性？举个小例子
@@ -98,7 +98,105 @@
 97 面对压力时，你通常会如何反应？
 98 有什么概念，用别的语言表达会更加贴切？
 99 人工智能能够创造真正的艺术吗？
-100 无知真的等同于幸福吗？`.trim().split(/\n/).map((line) => line.replace(/^\d+\s*/, ""));
+100 无知真的等同于幸福吗？
+101 至今仍藏在心底的遗憾是什么？
+102 这一生，你最害怕失去什么？
+103 哪一个瞬间，让你觉得自己被治愈了？
+104 童年记忆里最温暖的画面是？
+105 你现在还相信“永远”吗？
+106 此时此刻，你对自己满意吗？
+107 哪座城市承载了你特别的回忆？
+108 你究竟想成为一个什么样的人？
+109 想到什么场景，会让你瞬间心安？
+110 哪一次选择，让你到现在还在后悔？
+111 你现在最想原谅的人是谁？
+112 独处的时候，你通常在想什么？
+113 哪句话曾深刻刺痛过你？
+114 那个让你在深夜偷偷想念的人是谁？
+115 眼下有没有不敢面对的事？
+116 经历这么多，还相信好人有好报吗？
+117 有没有一句后悔没说出口的话？
+118 谁的存在让你觉得踏实？
+119 你会为了面子而委屈自己吗？
+120 你觉得婚姻是必需品吗？
+121 哪些时刻你在假装坚强？
+122 绝望时，是什么让你看到了希望？
+123 你会为了现实向理想妥协吗？
+124 哪怕一瞬间，你觉得自己足够好吗？
+125 如果时光倒流，最想弥补什么？
+126 坚持最久的一个习惯是什么？
+127 抛开世俗，你认为的成功是什么？
+128 你最讨厌自己性格里的哪一点？
+129 什么气味会让你觉得安心？
+130 有过百口莫辩、被深深误解的时刻吗？
+131 什么是让你感到精神疲惫的根源？
+132 “家”对你来说意味着什么？
+133 如果可以，你最想拥有什么超能力？
+134 成长路上，谁对你的影响最大？
+135 你内心藏着什么不为人知的小骄傲？
+136 压力快爆炸时，你怎么发泄？
+137 你觉得这一生被真正理解过吗？
+138 提起什么事，你就想立刻逃避？
+139 只要不说，就没人知道的秘密是？
+140 哪段关系让你觉得意难平？
+141 你最怕别人用什么词评价你？
+142 陌生人给过你怎样的温暖？
+143 看到什么画面会让你突然泪目？
+144 说实话，你有过真心的嫉妒吗？
+145 对未来最大的期待是什么？
+146 哪次失败，成了你蜕变的转折点？
+147 如果可以穿越，最想回到哪一刻？
+148 临死前最想做的一件事？
+149 具体的哪件事让你觉得“被爱着”？
+150 有没有什么爱好，曾救过你的命？
+151 成长对你来说意味着残酷还是礼物？
+152 最近一次被启发的瞬间？
+153 哪次相遇，改变了你的人生轨迹？
+154 最想打包扔掉的一段过去？
+155 你对友情的底线在哪里？
+156 分开后，你还会记得对方的好吗？
+157 哪种时刻让你感到蚀骨的孤独？
+158 你相信命运是注定的吗？
+159 现在的你，怎么定义“爱”？
+160 排序题：金钱、健康、爱什么最重要？
+161 你真正和自己和解了吗？
+162 此时此刻，最想感谢谁？
+163 你曾为了谁，不顾一切地拼过命？
+164 你尝试过放下某种执念吗？成功了吗？
+165 描述一下你眼中的“幸福”画面。
+166 那个放弃了却还在心里的梦想是？
+167 看到什么，会让你觉得人类很渺小？
+168 随着年龄增长，你对时间的看法变了吗？
+169 有没有一句鼓励，支撑你走了很远？
+170 你有过深夜痛哭、无法自抑的经历吗？
+171 冬天里让你觉得温暖的小事？
+172 你是习惯隐藏，还是习惯表达？
+173 人性的哪样特质你最珍视？
+174 你相信一见钟情，还是日久生情？
+175 什么时刻让你觉得自己“被需要”？
+176 最害怕重复经历什么样的痛苦？
+177 被误解时，你会拼命解释吗？
+178 哪首歌是你的人生BGM？
+179 现在的你和五年前比，最大的变化是？
+180 什么样的朋友值得你深交？
+181 最近一次感到委屈是因为什么？
+182 你敢在别人面前示弱哭泣吗？
+183 哪本书真正改变了你的三观？
+184 陷入自我怀疑时，你怎么走出来？
+185 你理解的自由是想做什么就做什么吗？
+186 面对冲突，你通常是战斗还是回避？
+187 有什么事做起来让你忘了时间？
+188 你会坚持做一件不喜欢但正确的事吗？
+189 还有没有特别想去却没去的地方？
+190 最近有没有被哪个风景/人惊艳到？
+191 如果现在世界末日，你最想拥抱谁？
+192 你希望老了以后过什么样的生活？
+193 哪怕全世界反对，也有人支持过你吗？
+194 今年最想实现的一个小目标？
+195 谁的眼神让你觉得有力量？
+196 那个让你心脏漏跳一拍的瞬间？
+197 你觉得什么样的活法，才算有价值？
+`.trim().split(/\n/).map((line) => line.replace(/^\d+\.?\s*/, ""));
 
 const deepTopics = [
   ["家庭背景", "爱为什么会变成条件？", "写一个你熟悉的家庭场景：其中的爱是怎样被奖励、成绩、懂事、牺牲或沉默绑定起来的？"],
@@ -236,7 +334,7 @@ async function loadAnswers() {
 }
 
 function drawQuestion(number) {
-  const index = Math.min(100, Math.max(1, Number(number) || 1));
+  const index = Math.min(questions.length, Math.max(1, Number(number) || 1));
   currentQuestion = { id: `Q${index}`, text: questions[index - 1] };
   $("#num").value = index;
   $("#qBadge").textContent = `Q ${index}`;
@@ -287,7 +385,7 @@ function renderBooks() {
       </div>
     </article>
   `).join("");
-  $(".cover img").forEach((img) => {
+  $$(".cover img").forEach((img) => {
     img.addEventListener("load", () => {
       if (img.naturalWidth > 2 && img.naturalHeight > 2) img.parentElement.classList.add("has-image");
     });
@@ -455,6 +553,117 @@ function startCountryMusic(ctx) {
   const timer = setInterval(playRound, 5200);
   audio.nodes.push({ stop: () => clearInterval(timer), disconnect() {} });
 }
+function playBell(ctx, frequency, start, duration = 3.2, volume = 0.036) {
+  const carrier = ctx.createOscillator();
+  const mod = ctx.createOscillator();
+  const modGain = ctx.createGain();
+  const gain = ctx.createGain();
+  const filter = ctx.createBiquadFilter();
+  carrier.type = "sine";
+  mod.type = "sine";
+  carrier.frequency.setValueAtTime(frequency, start);
+  mod.frequency.setValueAtTime(frequency * 2.02, start);
+  modGain.gain.setValueAtTime(frequency * 0.18, start);
+  filter.type = "highpass";
+  filter.frequency.setValueAtTime(280, start);
+  gain.gain.setValueAtTime(0.0001, start);
+  gain.gain.exponentialRampToValueAtTime(volume, start + 0.025);
+  gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+  mod.connect(modGain).connect(carrier.frequency);
+  carrier.connect(filter).connect(gain).connect(audio.master);
+  carrier.start(start);
+  mod.start(start);
+  carrier.stop(start + duration + 0.08);
+  mod.stop(start + duration + 0.08);
+  audio.nodes.push(carrier, mod, modGain, filter, gain);
+}
+
+function startRainSound(ctx) {
+  const base = createNoise(ctx, 4);
+  const low = ctx.createBiquadFilter();
+  const high = ctx.createBiquadFilter();
+  const gain = ctx.createGain();
+  low.type = "lowpass";
+  low.frequency.value = 1850;
+  high.type = "highpass";
+  high.frequency.value = 420;
+  gain.gain.value = 0.14;
+  base.connect(low).connect(high).connect(gain).connect(audio.master);
+  base.start();
+  audio.nodes.push(base, low, high, gain);
+
+  const drops = setInterval(() => {
+    const t = ctx.currentTime + Math.random() * 0.18;
+    const osc = ctx.createOscillator();
+    const dropGain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(880 + Math.random() * 620, t);
+    dropGain.gain.setValueAtTime(0.0001, t);
+    dropGain.gain.exponentialRampToValueAtTime(0.018 + Math.random() * 0.012, t + 0.012);
+    dropGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.12 + Math.random() * 0.08);
+    osc.connect(dropGain).connect(audio.master);
+    osc.start(t);
+    osc.stop(t + 0.24);
+    audio.nodes.push(osc, dropGain);
+  }, 170);
+  audio.nodes.push({ stop: () => clearInterval(drops), disconnect() {} });
+}
+
+function startWindChimes(ctx) {
+  const notes = [659.25, 739.99, 880, 987.77, 1174.66, 1318.51];
+  const play = () => {
+    const now = ctx.currentTime + 0.05;
+    const count = 1 + Math.floor(Math.random() * 3);
+    for (let i = 0; i < count; i += 1) {
+      const note = notes[Math.floor(Math.random() * notes.length)] * (Math.random() > 0.76 ? 0.5 : 1);
+      playBell(ctx, note, now + i * 0.18 + Math.random() * 0.22, 3.4 + Math.random() * 1.8, 0.018 + Math.random() * 0.016);
+    }
+  };
+  play();
+  const timer = setInterval(play, 1800 + Math.random() * 900);
+  audio.nodes.push({ stop: () => clearInterval(timer), disconnect() {} });
+}
+
+function playGuqin(ctx, frequency, start, duration = 2.8, volume = 0.05) {
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  const filter = ctx.createBiquadFilter();
+  osc.type = "triangle";
+  osc.frequency.setValueAtTime(frequency * 0.997, start);
+  osc.frequency.linearRampToValueAtTime(frequency, start + 0.08);
+  filter.type = "lowpass";
+  filter.frequency.setValueAtTime(1280, start);
+  filter.frequency.exponentialRampToValueAtTime(520, start + duration);
+  gain.gain.setValueAtTime(0.0001, start);
+  gain.gain.exponentialRampToValueAtTime(volume, start + 0.035);
+  gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+  osc.connect(filter).connect(gain).connect(audio.master);
+  osc.start(start);
+  osc.stop(start + duration + 0.08);
+  audio.nodes.push(osc, filter, gain);
+}
+
+function startAncientMusic(ctx) {
+  const guqin = [146.83, 164.81, 196, 220, 246.94, 293.66, 329.63, 392];
+  const xiao = [392, 440, 493.88, 587.33, 659.25, 587.33, 493.88];
+  let round = 0;
+  const playRound = () => {
+    const base = ctx.currentTime + 0.08;
+    [0, 1.15, 2.32, 3.62, 4.8].forEach((offset, index) => {
+      const note = guqin[(round + index * 2) % guqin.length];
+      playGuqin(ctx, note, base + offset, 3.1, index % 2 ? 0.034 : 0.047);
+      if (index % 2 === 0) playGuqin(ctx, note * 2, base + offset + 0.04, 2.2, 0.022);
+    });
+    xiao.slice(round % 2, 5 + (round % 3)).forEach((note, index) => {
+      playFlute(ctx, note, base + 1.45 + index * 0.82, 1.85, 0.024);
+    });
+    if (round % 2 === 0) playBell(ctx, 880, base + 5.7, 4.2, 0.018);
+    round += 1;
+  };
+  playRound();
+  const timer = setInterval(playRound, 6800);
+  audio.nodes.push({ stop: () => clearInterval(timer), disconnect() {} });
+}
 function stopAmbient() {
   audio.nodes.forEach((node) => {
     try { node.stop?.(); } catch {}
@@ -491,6 +700,12 @@ function startAmbient(kind) {
     audio.nodes.push(noise, filter, gain);
   } else if (kind === "country") {
     startCountryMusic(ctx);
+  } else if (kind === "rain") {
+    startRainSound(ctx);
+  } else if (kind === "chime") {
+    startWindChimes(ctx);
+  } else if (kind === "ancient") {
+    startAncientMusic(ctx);
   } else if (kind === "cicada") {
     for (let i = 0; i < 3; i += 1) {
       const osc = ctx.createOscillator();
@@ -528,7 +743,7 @@ function startAmbient(kind) {
 
 function bindEvents() {
   $("#draw").addEventListener("click", () => drawQuestion($("#num").value));
-  $("#random").addEventListener("click", () => drawQuestion(Math.floor(Math.random() * 100) + 1));
+  $("#random").addEventListener("click", () => drawQuestion(Math.floor(Math.random() * questions.length) + 1));
   $("#num").addEventListener("keydown", (event) => { if (event.key === "Enter") drawQuestion($("#num").value); });
   $("#deepDraw").addEventListener("click", drawDeep);
   $("#type").addEventListener("change", renderBooks);
@@ -596,22 +811,3 @@ function boot() {
 }
 
 boot();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
