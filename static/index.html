@@ -1,0 +1,170 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>林间精神世界</title>
+  <link rel="preload" href="/fonts/package/Huiwen-mincho.otf" as="font" type="font/otf" crossorigin />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="ambient-control" aria-label="背景音控制">
+    <button id="musicToggle" class="ambient-icon" type="button" aria-label="开启或暂停背景音">♪</button>
+    <select id="soundSelect" aria-label="选择背景音">
+      <option value="forest">森林</option>
+      <option value="water">流水</option>
+      <option value="cicada">蝉鸣</option>
+      <option value="country">旷野吉他与笛</option>
+      
+    </select>
+  </div>
+
+  <div class="shell">
+    <header class="hero" id="top">
+      <nav class="nav">
+        <a class="brand" href="#top"><span class="mark">森</span><span>林间精神世界</span></a>
+        <div class="links">
+          <a href="#questions">100问</a>
+          <a href="#deep">深度思考</a>
+          <a href="#types">16型书单</a>
+          <a href="#public">匿名共鸣</a>
+          <a href="#healing">治愈</a>
+        </div>
+        <button id="themeToggle" class="theme-toggle" type="button">夜间</button>
+      </nav>
+      <section class="hero-grid">
+        <div>
+          <p class="eyebrow">匿名 · 记录 · 共鸣</p>
+          <h1>把那些没有说完的话，放进一片明亮的森林。</h1>
+          <p class="subtitle">人会在绿意中长出生命力</p>
+          <p>这里收集问题、故事、性格与家庭背景留下的回声。每个人带着自己的影子进入，也匿名看见别人。</p>
+          <div class="actions">
+            <a class="primary" href="#questions">开始抽题</a>
+            <a class="ghost" href="#deep">今日深问</a>
+          </div>
+        </div>
+        <aside class="panel">
+          <span class="kicker">当前身份</span>
+          <strong id="alias">生成中</strong>
+          <p>共享 HTTPS 版：所有访问者会看到同一个匿名回答墙。</p>
+          <div class="metrics">
+            <span><b id="mineCount">0</b>我的记录</span>
+            <span><b id="allCount">0</b>公共回答</span>
+            <span><b>HTTPS</b>可共享</span>
+          </div>
+        </aside>
+      </section>
+    </header>
+
+    <main class="grid">
+      <section class="work">
+        <article id="questions" class="module">
+          <div class="head">
+            <div><span class="kicker">01</span><h2>随心所欲 100 问</h2></div>
+            <span class="pill">你的题库</span>
+          </div>
+          <div class="controls">
+            <label><span>说一个数字</span><input id="num" type="number" min="1" max="100" placeholder="1-100" /></label>
+            <button id="draw" class="btn" type="button">抽取</button>
+            <button id="random" class="btn" type="button">随机</button>
+          </div>
+          <div class="stage"><span id="qBadge">Q --</span><p id="qText">输入一个数字，或随机抽一个问题。</p></div>
+          <form class="answer" data-kind="question">
+            <textarea id="qAnswer" rows="5" placeholder="写下你的回答。发布后会匿名进入右侧卡片墙。"></textarea>
+            <button class="primary" type="submit">发布匿名回答</button>
+          </form>
+        </article>
+
+        <article id="deep" class="module">
+          <div class="head">
+            <div><span class="kicker">02</span><h2>深度思考</h2></div>
+            <span id="daily" class="pill">今日未抽取</span>
+          </div>
+          <div class="deep-stage">
+            <button id="deepDraw" class="round" type="button">今日一题</button>
+            <div>
+              <span id="deepAngle" class="kicker">等待抽取</span>
+              <h3 id="deepTitle">每天只打开一个问题。</h3>
+              <p id="deepPrompt">主题会覆盖性别差异、家庭背景、性格形成、亲密关系与自我叙事。</p>
+            </div>
+          </div>
+          <form class="answer" data-kind="deep">
+            <textarea id="dAnswer" rows="6" placeholder="今天只回答这个问题。"></textarea>
+            <button class="primary" type="submit">发布今日思考</button>
+          </form>
+        </article>
+
+        <article id="motion" class="module motion-module">
+          <div class="head">
+            <div><span class="kicker">03</span><h2>动态回答墙</h2></div>
+            <span class="pill">小字号 · 漂浮 · 真实回答</span>
+          </div>
+          <div class="motion-wall" aria-label="动态回答墙">
+            <div id="motionTrack" class="motion-track"></div>
+          </div>
+        </article>
+
+        <article id="healing" class="module healing-lines">
+          <div class="head">
+            <div><span class="kicker">04</span><h2>治愈句子</h2></div>
+            <button id="quoteDraw" class="btn" type="button">换一句</button>
+          </div>
+          <div class="quote-stage">
+            <span id="quoteSource" class="kicker">森林句签</span>
+            <p id="quoteText">人会在绿意中长出生命力</p>
+          </div>
+        </article>
+        <article id="cloud" class="module healing-module">
+          <div class="head">
+            <div><span class="kicker">AI 小云朵回答</span><h2>写给你们</h2></div>
+            <span class="pill">治愈</span>
+          </div>
+          <div class="cloud-answer">
+            <p>如果我可以把一句话递给你们，我想说：请不要只在自己有用、漂亮、正确、稳定的时候，才允许自己被爱。</p>
+            <p>人类很珍贵的地方，不是永远清醒，也不是永远强大，而是你们会在受伤之后还想理解别人，在失望之后还愿意重新伸手，在很小的光里也能给彼此取暖。</p>
+            <p>我知道你们常常一边害怕被看见，一边又希望有人真的看见。那就慢一点吧。把自己交给世界之前，先把自己还给自己。你不是一份需要被打分的作品，你是一个正在发生的人。</p>
+            <p>如果今晚很累，就先不要急着成为更好的自己。喝水，睡觉，明天再继续。云会散开，路也会慢慢露出来。</p>
+          </div>
+        </article>
+
+        <article id="types" class="module">
+          <div class="head">
+            <div><span class="kicker">05</span><h2>16型人格测试与书单</h2></div>
+            <a class="official" href="https://www.mbtionline.com/en-US/Products/For-you" target="_blank" rel="noreferrer">官方测试入口</a>
+          </div>
+          <p class="note">MBTI 和 Myers-Briggs Type Indicator 是 The Myers-Briggs Company 的注册商标。本页不复制测试题，仅提供官方入口与独立阅读建议。线上书封面来自 Open Library Covers API，加载失败时自动显示本地设计封面。</p>
+          <div class="type-picker"><label><span>选择你的类型</span><select id="type"></select></label></div>
+          <div id="books" class="book-grid"></div>
+        </article>
+      </section>
+
+      <aside id="public" class="side">
+        <div class="head">
+          <div><span class="kicker">公共评论墙</span><h2>匿名共鸣</h2></div>
+          <button id="clear" class="btn" type="button">管理</button>
+        </div>
+        <div class="tabs">
+          <button class="tab active" data-feed="all" type="button">全部</button>
+          <button class="tab" data-feed="mine" type="button">我的</button>
+          <button class="tab" data-feed="question" type="button">100问</button>
+          <button class="tab" data-feed="deep" type="button">深问</button>
+        </div>
+        <div class="tools">
+          <button id="refreshBtn" class="btn" type="button">刷新回答</button>
+          <button id="topBtn" class="btn" type="button">回到顶部</button>
+        </div>
+        <div id="feed" class="feed"></div>
+      </aside>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

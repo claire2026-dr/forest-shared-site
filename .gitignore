@@ -1,0 +1,9 @@
+﻿__pycache__/
+*.pyc
+*.log
+.env
+.DS_Store
+data/answers.json
+data/server.*.log
+data/tunnel.*.log
+static/audio/
