@@ -305,16 +305,46 @@ const healingQuotes = [
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
+const isVisibleAnswer = (item) => item.kind !== "suggestion";
+
+function getDefaultAlias() {
+  return `林间访客 ${uid.slice(-4).toUpperCase()}`;
+}
+
+function cleanAlias(value) {
+  return String(value || "").replace(/\s+/g, " ").trim().slice(0, 16);
+}
+
+function syncAliasPanel() {
+  const aliasNode = $("#alias");
+  if (aliasNode) aliasNode.textContent = alias;
+  const input = $("#aliasInput");
+  if (input) input.value = localStorage.forest_alias || "";
+  const hint = $("#aliasHint");
+  if (hint) hint.textContent = localStorage.forest_alias ? `当前使用：${localStorage.forest_alias}` : "共享 HTTPS 版：所有访问者会看到同一个匿名回答墙。";
+}
+
+function setAlias(value) {
+  const cleaned = cleanAlias(value);
+  if (cleaned) {
+    alias = cleaned;
+    localStorage.forest_alias = cleaned;
+  } else {
+    alias = getDefaultAlias();
+    localStorage.removeItem("forest_alias");
+  }
+  syncAliasPanel();
+}
 
 let uid = localStorage.forest_uid || (localStorage.forest_uid = `u${Math.random().toString(16).slice(2, 8)}`);
-let alias = `林间访客 ${uid.slice(-4).toUpperCase()}`;
+let alias = localStorage.forest_alias || getDefaultAlias();
 let currentQuestion = { id: "Q1", text: questions[0] };
 let currentDeep = null;
 let feed = "all";
 let answers = [];
 let audio = { ctx: null, master: null, nodes: [], playing: false, element: null };
 
-$("#alias").textContent = alias;
+syncAliasPanel();
 
 async function api(path, options) {
   const response = await fetch(path, options);
@@ -327,8 +357,9 @@ async function api(path, options) {
 async function loadAnswers() {
   const data = await api(`/api/state?user_id=${encodeURIComponent(uid)}`);
   answers = data.answers || [];
-  $("#mineCount").textContent = (data.my_answers || []).length;
-  $("#allCount").textContent = data.stats?.answers || answers.length;
+  const visibleAnswers = answers.filter(isVisibleAnswer);
+  $("#mineCount").textContent = visibleAnswers.filter((item) => item.user_id === uid).length;
+  $("#allCount").textContent = visibleAnswers.length;
   renderFeed();
   renderMotionWall();
   renderSuggestions();
@@ -407,7 +438,7 @@ function formatDate(value) {
 function renderMotionWall() {
   const target = $("#motionTrack");
   if (!target) return;
-  const source = answers.length ? answers.slice(0, 30) : [];
+  const source = answers.filter(isVisibleAnswer).slice(0, 30);
   if (!source.length) {
     target.innerHTML = '<div class="empty">回答出现后，这里会变成一面缓慢流动的文字照片墙。</div>';
     return;
@@ -452,8 +483,9 @@ function renderSuggestions() {
   `).join("");
 }
 function renderFeed() {
-  let items = feed === "mine" ? answers.filter((item) => item.user_id === uid) : answers;
-  if (feed === "question" || feed === "deep") items = answers.filter((item) => item.kind === feed);
+  let items = answers.filter(isVisibleAnswer);
+  if (feed === "mine") items = items.filter((item) => item.user_id === uid);
+  if (feed === "question" || feed === "deep") items = items.filter((item) => item.kind === feed);
   if (!items.length) {
     $("#feed").innerHTML = '<div class="empty">这里还没有回答。写下第一条，右侧会生成一张匿名卡片。</div>';
     return;
@@ -767,6 +799,11 @@ function bindEvents() {
   $("#type").addEventListener("change", renderBooks);
   $("#refreshBtn").addEventListener("click", loadAnswers);
   $("#quoteDraw")?.addEventListener("click", renderHealingQuote);
+  $("#aliasForm")?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    setAlias($("#aliasInput").value);
+  });
+  $("#aliasReset")?.addEventListener("click", () => setAlias(""));
   $("#topBtn").addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
   $("#clear").addEventListener("click", () => alert("共享版不能一键清空公共评论，避免误删大家的内容。"));
   $("#themeToggle").addEventListener("click", () => setTheme(document.body.dataset.theme === "dark" ? "light" : "dark"));

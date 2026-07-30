@@ -51,7 +51,14 @@
         <aside class="panel">
           <span class="kicker">当前身份</span>
           <strong id="alias">生成中</strong>
-          <p>共享 HTTPS 版：所有访问者会看到同一个匿名回答墙。</p>
+          <form id="aliasForm" class="alias-form">
+            <label><span>给自己起名</span><input id="aliasInput" type="text" maxlength="16" placeholder="不填就用系统名" autocomplete="nickname" /></label>
+            <div class="alias-actions">
+              <button class="btn" type="submit">保存名字</button>
+              <button id="aliasReset" class="btn" type="button">恢复系统名</button>
+            </div>
+          </form>
+          <p id="aliasHint" class="alias-hint">共享 HTTPS 版：所有访问者会看到同一个匿名回答墙。</p>
           <div class="metrics">
             <span><b id="mineCount">0</b>我的记录</span>
             <span><b id="allCount">0</b>公共回答</span>
